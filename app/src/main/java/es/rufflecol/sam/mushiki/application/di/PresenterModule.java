@@ -1,9 +1,9 @@
-package sam.rufflecol.es.mushiki.application.di;
+package es.rufflecol.sam.mushiki.application.di;
 
 import dagger.Module;
 import dagger.Provides;
-import sam.rufflecol.es.mushiki.presentation.allgames.AllGamesMvp;
-import sam.rufflecol.es.mushiki.presentation.allgames.AllGamesPresenter;
+import es.rufflecol.sam.mushiki.presentation.allgames.AllGamesMvp;
+import es.rufflecol.sam.mushiki.presentation.allgames.AllGamesPresenter;
 
 @Module
 public class PresenterModule {

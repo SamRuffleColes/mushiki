@@ -1,4 +1,4 @@
-package sam.rufflecol.es.mushiki;
+package es.rufflecol.sam.mushiki;
 
 import org.junit.Test;
 

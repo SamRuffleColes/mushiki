@@ -1,4 +1,4 @@
-package sam.rufflecol.es.mushiki.presentation.common.widget;
+package es.rufflecol.sam.mushiki.presentation.common.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package sam.rufflecol.es.mushiki.presentation.allgames;
+package es.rufflecol.sam.mushiki.presentation.allgames;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,8 +9,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sam.rufflecol.es.mushiki.R;
-import sam.rufflecol.es.mushiki.application.App;
+import es.rufflecol.sam.mushiki.R;
+import es.rufflecol.sam.mushiki.application.App;
 
 public class AllGamesActivity extends AppCompatActivity implements AllGamesMvp.View {
 

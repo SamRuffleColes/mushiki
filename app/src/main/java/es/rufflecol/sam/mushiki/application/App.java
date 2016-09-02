@@ -1,12 +1,12 @@
-package sam.rufflecol.es.mushiki.application;
+package es.rufflecol.sam.mushiki.application;
 
 import android.app.Application;
 
-import sam.rufflecol.es.mushiki.application.di.ApiModule;
-import sam.rufflecol.es.mushiki.application.di.AppComponent;
-import sam.rufflecol.es.mushiki.application.di.DaggerAppComponent;
-import sam.rufflecol.es.mushiki.application.di.InteractorModule;
-import sam.rufflecol.es.mushiki.application.di.PresenterModule;
+import es.rufflecol.sam.mushiki.application.di.ApiModule;
+import es.rufflecol.sam.mushiki.application.di.AppComponent;
+import es.rufflecol.sam.mushiki.application.di.DaggerAppComponent;
+import es.rufflecol.sam.mushiki.application.di.InteractorModule;
+import es.rufflecol.sam.mushiki.application.di.PresenterModule;
 
 public class App extends Application {
 

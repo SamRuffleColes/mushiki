@@ -1,6 +1,6 @@
-package sam.rufflecol.es.mushiki.presentation.allgames;
+package es.rufflecol.sam.mushiki.presentation.allgames;
 
-import sam.rufflecol.es.mushiki.presentation.common.BasePresenter;
+import es.rufflecol.sam.mushiki.presentation.common.BasePresenter;
 
 public interface AllGamesMvp {
 

@@ -1,4 +1,4 @@
-package sam.rufflecol.es.mushiki.presentation.allgames;
+package es.rufflecol.sam.mushiki.presentation.allgames;
 
 import javax.inject.Inject;
 

@@ -1,4 +1,4 @@
-package sam.rufflecol.es.mushiki.application.di;
+package es.rufflecol.sam.mushiki.application.di;
 
 import dagger.Module;
 

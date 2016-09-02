@@ -1,9 +1,9 @@
-package sam.rufflecol.es.mushiki.application.di;
+package es.rufflecol.sam.mushiki.application.di;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
-import sam.rufflecol.es.mushiki.presentation.allgames.AllGamesActivity;
+import es.rufflecol.sam.mushiki.presentation.allgames.AllGamesActivity;
 
 @Singleton
 @Component(modules = {PresenterModule.class, InteractorModule.class, ApiModule.class})

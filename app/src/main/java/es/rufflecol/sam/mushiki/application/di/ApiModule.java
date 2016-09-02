@@ -1,4 +1,4 @@
-package sam.rufflecol.es.mushiki.application.di;
+package es.rufflecol.sam.mushiki.application.di;
 
 import java.util.concurrent.TimeUnit;
 
@@ -7,7 +7,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
-import sam.rufflecol.es.mushiki.application.Cfg;
+import es.rufflecol.sam.mushiki.application.Cfg;
 
 @Module
 public class ApiModule {

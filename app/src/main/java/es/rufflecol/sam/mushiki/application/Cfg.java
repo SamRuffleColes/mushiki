@@ -1,4 +1,4 @@
-package sam.rufflecol.es.mushiki.application;
+package es.rufflecol.sam.mushiki.application;
 
 public final class Cfg {
 
