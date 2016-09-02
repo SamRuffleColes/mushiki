@@ -19,4 +19,8 @@ public class AllGamesPresenter implements AllGamesMvp.Presenter {
         this.view = view;
     }
 
+    @Override
+    public void methodOne() {
+        view.methodTwo();
+    }
 }

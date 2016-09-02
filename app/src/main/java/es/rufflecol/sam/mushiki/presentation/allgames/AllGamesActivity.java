@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import javax.inject.Inject;
 
@@ -17,6 +18,9 @@ public class AllGamesActivity extends AppCompatActivity implements AllGamesMvp.V
     @BindView(R.id.rv_games)
     RecyclerView recyclerView;
 
+    @BindView(R.id.test)
+    TextView t;
+
     @Inject
     AllGamesMvp.Presenter presenter;
 
@@ -26,6 +30,14 @@ public class AllGamesActivity extends AppCompatActivity implements AllGamesMvp.V
         setContentView(R.layout.activity_all_games);
         ButterKnife.bind(this);
         App.get().getAppComponent().inject(this);
+        presenter.setView(this);
+
+        t.setText("hurga");
+        presenter.methodOne();
     }
 
+    @Override
+    public void methodTwo() {
+        t.setText("smurga");
+    }
 }
