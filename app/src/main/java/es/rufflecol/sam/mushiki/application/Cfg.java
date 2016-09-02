@@ -9,4 +9,5 @@ public final class Cfg {
     public static final long HTTP_READ_TIMEOUT = 30;
     public static final long HTTP_CONNECTION_TIMEOUT = 30;
 
+    public static final String STEAM_COMMUNITY_API_BASE_URL = "http://steamcommunity.com";
 }
