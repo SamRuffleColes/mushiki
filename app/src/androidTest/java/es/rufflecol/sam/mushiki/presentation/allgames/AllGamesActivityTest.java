@@ -55,7 +55,7 @@ public class AllGamesActivityTest {
         Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
         MockApp app = (MockApp) instrumentation.getTargetContext().getApplicationContext();
 
-        presenter = createMockPresenter();
+        createMockPresenter();
         MockPresenterModule mockPresenterModule = new MockPresenterModule();
         mockPresenterModule.setAllGamesPresenter(presenter);
 
@@ -64,11 +64,10 @@ public class AllGamesActivityTest {
                 .build());
     }
 
-    private AllGamesMvp.Presenter createMockPresenter() {
-        AllGamesMvp.Presenter presenter = mock(AllGamesMvp.Presenter.class);
+    private void createMockPresenter() {
+        presenter = mock(AllGamesMvp.Presenter.class);
         captureViewArgumentWhenPresenterSetView();
         requestSteamIdWhenPresenterOnCreate();
-        return presenter;
     }
 
     private void captureViewArgumentWhenPresenterSetView() {
