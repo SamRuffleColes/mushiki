@@ -62,6 +62,8 @@ public class AllGamesActivityTest {
         app.setAppComponent(DaggerAllGamesActivityTest_TestApplicationComponent.builder()
                 .mockPresenterModule(mockPresenterModule)
                 .build());
+
+        activityRule.launchActivity(new Intent());
     }
 
     private void createMockPresenter() {
@@ -92,14 +94,9 @@ public class AllGamesActivityTest {
 
     @Test
     public void requestSteamIdDialogCallsFetchGamesForUserWithInputUsername() {
-        launchActivity();
         onView(withId(R.id.editext)).perform(typeText("myUsername"), closeSoftKeyboard());
         onView(withText(R.string.ok)).perform(click());
         verify(presenter, times(1)).fetchGamesForUser("myUsername");
-    }
-
-    private void launchActivity() {
-        activityRule.launchActivity(new Intent());
     }
 
 }
