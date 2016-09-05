@@ -12,19 +12,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 
-import es.rufflecol.sam.mushiki.R;
 import es.rufflecol.sam.mushiki.application.MockApp;
 import es.rufflecol.sam.mushiki.application.di.DaggerAppComponent;
 import es.rufflecol.sam.mushiki.application.di.MockPresenterModule;
-
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.mockito.Mockito.doAnswer;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -51,21 +42,13 @@ public class AllGamesActivityTest {
     }
 
     @Test
-    public void testSomething() {
+    public void testNothing() {
         launchActivity();
-        onView(withId(R.id.test)).check(matches(withText("smurga")));
     }
 
     private void launchActivity() {
         activityRule.launchActivity(new Intent());
         view = activityRule.getActivity();
-        doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                view.methodTwo();
-                return null;
-            }
-        }).when(presenter).methodOne();
     }
 
 }

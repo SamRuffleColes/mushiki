@@ -31,13 +31,13 @@ public class AllGamesActivity extends AppCompatActivity implements AllGamesMvp.V
         ButterKnife.bind(this);
         App.get().getAppComponent().inject(this);
         presenter.setView(this);
-
-        t.setText("hurga");
-        presenter.methodOne();
+        presenter.onCreate();
     }
+
 
     @Override
-    public void methodTwo() {
-        t.setText("smurga");
+    public void requestSteamId() {
+
     }
+
 }

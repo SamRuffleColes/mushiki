@@ -20,7 +20,8 @@ public class AllGamesPresenter implements AllGamesMvp.Presenter {
     }
 
     @Override
-    public void methodOne() {
-        view.methodTwo();
+    public void onCreate() {
+        view.requestSteamId();
     }
+
 }
