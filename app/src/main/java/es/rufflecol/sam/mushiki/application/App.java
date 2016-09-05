@@ -2,13 +2,20 @@ package es.rufflecol.sam.mushiki.application;
 
 import android.app.Application;
 
+import javax.inject.Singleton;
+
+import dagger.Component;
 import es.rufflecol.sam.mushiki.application.di.ApiModule;
 import es.rufflecol.sam.mushiki.application.di.AppComponent;
-import es.rufflecol.sam.mushiki.application.di.DaggerAppComponent;
 import es.rufflecol.sam.mushiki.application.di.InteractorModule;
 import es.rufflecol.sam.mushiki.application.di.PresenterModule;
 
 public class App extends Application {
+
+    @Singleton
+    @Component(modules = {PresenterModule.class, InteractorModule.class, ApiModule.class})
+    public interface ApplicationComponent extends AppComponent {
+    }
 
     private static App app;
 
@@ -22,7 +29,7 @@ public class App extends Application {
 
     public AppComponent getAppComponent() {
         if (appComponent == null) {
-            appComponent = DaggerAppComponent.builder()
+            appComponent = DaggerApp_ApplicationComponent.builder()
                     .presenterModule(new PresenterModule())
                     .interactorModule(new InteractorModule())
                     .apiModule(new ApiModule())

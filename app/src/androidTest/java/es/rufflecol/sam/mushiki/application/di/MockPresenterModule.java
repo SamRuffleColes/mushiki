@@ -7,7 +7,7 @@ import dagger.Provides;
 import es.rufflecol.sam.mushiki.presentation.allgames.AllGamesMvp;
 
 @Module
-public class MockPresenterModule extends PresenterModule {
+public class MockPresenterModule {
 
     private AllGamesMvp.Presenter allGamesPresenter;
 

@@ -11,15 +11,38 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
+import javax.inject.Singleton;
+
+import dagger.Component;
+import es.rufflecol.sam.mushiki.R;
 import es.rufflecol.sam.mushiki.application.MockApp;
-import es.rufflecol.sam.mushiki.application.di.DaggerAppComponent;
+import es.rufflecol.sam.mushiki.application.di.AppComponent;
 import es.rufflecol.sam.mushiki.application.di.MockPresenterModule;
+
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class AllGamesActivityTest {
+
+    @Singleton
+    @Component(modules = MockPresenterModule.class)
+    public interface TestApplicationComponent extends AppComponent {
+        void inject(AllGamesActivity activity);
+    }
 
     @Rule
     public ActivityTestRule<AllGamesActivity> activityRule = new ActivityTestRule<>(AllGamesActivity.class, true, false);
@@ -32,23 +55,44 @@ public class AllGamesActivityTest {
         Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
         MockApp app = (MockApp) instrumentation.getTargetContext().getApplicationContext();
 
-        presenter = Mockito.mock(AllGamesMvp.Presenter.class);
+        presenter = createMockPresenter();
         MockPresenterModule mockPresenterModule = new MockPresenterModule();
         mockPresenterModule.setAllGamesPresenter(presenter);
 
-        app.setAppComponent(DaggerAppComponent.builder()
-                .presenterModule(mockPresenterModule)
+        app.setAppComponent(DaggerAllGamesActivityTest_TestApplicationComponent.builder()
+                .mockPresenterModule(mockPresenterModule)
                 .build());
     }
 
+    private AllGamesMvp.Presenter createMockPresenter() {
+        AllGamesMvp.Presenter presenter = mock(AllGamesMvp.Presenter.class);
+        doAnswer(new Answer<Void>() {
+            @Override
+            public Void answer(InvocationOnMock invocation) throws Throwable {
+                view = (AllGamesMvp.View) invocation.getArguments()[0];
+                return null;
+            }
+        }).when(presenter).setView(any(AllGamesMvp.View.class));
+        doAnswer(new Answer<Void>() {
+            @Override
+            public Void answer(InvocationOnMock invocation) throws Throwable {
+                view.requestSteamId();
+                return null;
+            }
+        }).when(presenter).onCreate();
+        return presenter;
+    }
+
     @Test
-    public void testNothing() {
+    public void requestSteamIdDialogCallsFetchGamesForUserWithInputUsername() {
         launchActivity();
+        onView(withId(R.id.editext)).perform(typeText("myUsername"), closeSoftKeyboard());
+        onView(withText(R.string.ok)).perform(click());
+        verify(presenter, times(1)).fetchGamesForUser("myUsername");
     }
 
     private void launchActivity() {
         activityRule.launchActivity(new Intent());
-        view = activityRule.getActivity();
     }
 
 }

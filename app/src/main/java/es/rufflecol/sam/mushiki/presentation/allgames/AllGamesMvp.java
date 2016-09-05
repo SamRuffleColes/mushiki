@@ -6,6 +6,8 @@ public interface AllGamesMvp {
 
     interface Presenter extends BasePresenter<View> {
         void onCreate();
+
+        void fetchGamesForUser(String idOrUsername);
     }
 
     interface View {

@@ -24,4 +24,9 @@ public class AllGamesPresenter implements AllGamesMvp.Presenter {
         view.requestSteamId();
     }
 
+    @Override
+    public void fetchGamesForUser(String idOrUsername) {
+
+    }
+
 }
