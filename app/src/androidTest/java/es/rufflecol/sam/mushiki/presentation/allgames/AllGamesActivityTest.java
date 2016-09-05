@@ -66,6 +66,12 @@ public class AllGamesActivityTest {
 
     private AllGamesMvp.Presenter createMockPresenter() {
         AllGamesMvp.Presenter presenter = mock(AllGamesMvp.Presenter.class);
+        captureViewArgumentWhenPresenterSetView();
+        requestSteamIdWhenPresenterOnCreate();
+        return presenter;
+    }
+
+    private void captureViewArgumentWhenPresenterSetView() {
         doAnswer(new Answer<Void>() {
             @Override
             public Void answer(InvocationOnMock invocation) throws Throwable {
@@ -73,6 +79,9 @@ public class AllGamesActivityTest {
                 return null;
             }
         }).when(presenter).setView(any(AllGamesMvp.View.class));
+    }
+
+    private void requestSteamIdWhenPresenterOnCreate() {
         doAnswer(new Answer<Void>() {
             @Override
             public Void answer(InvocationOnMock invocation) throws Throwable {
@@ -80,7 +89,6 @@ public class AllGamesActivityTest {
                 return null;
             }
         }).when(presenter).onCreate();
-        return presenter;
     }
 
     @Test
