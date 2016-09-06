@@ -14,12 +14,13 @@ public class FetchSteamGamesInteractor implements Interactor.FetchSteamGames {
     }
 
     @Override
-    public void fetchForId(long steamId64) {
+    public void fetchForId(long steamId64, Listener listener) {
 
     }
 
     @Override
-    public void fetchForUsername(String username) {
+    public void fetchForUsername(String username, Listener listener) {
 
     }
+
 }

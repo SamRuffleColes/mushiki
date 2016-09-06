@@ -7,9 +7,9 @@ import es.rufflecol.sam.mushiki.data.steam.community.model.SteamGame;
 public interface Interactor {
 
     interface FetchSteamGames {
-        void fetchForId(long steamId64);
+        void fetchForId(long steamId64, Listener listener);
 
-        void fetchForUsername(String username);
+        void fetchForUsername(String username, Listener listener);
 
         interface Listener {
             void onFetchSteamGamesSuccess(List<SteamGame> games);

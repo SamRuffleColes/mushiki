@@ -77,4 +77,40 @@ public class SteamGame {
         //required for simplexml
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SteamGame steamGame = (SteamGame) o;
+
+        if (appId != steamGame.appId) return false;
+        if (Double.compare(steamGame.hoursPlayedInTheLastFortnight, hoursPlayedInTheLastFortnight) != 0)
+            return false;
+        if (Double.compare(steamGame.hoursPlayedInAllTime, hoursPlayedInAllTime) != 0) return false;
+        if (name != null ? !name.equals(steamGame.name) : steamGame.name != null) return false;
+        if (logo != null ? !logo.equals(steamGame.logo) : steamGame.logo != null) return false;
+        if (storeLink != null ? !storeLink.equals(steamGame.storeLink) : steamGame.storeLink != null)
+            return false;
+        if (statsLink != null ? !statsLink.equals(steamGame.statsLink) : steamGame.statsLink != null)
+            return false;
+        return globalStatsLink != null ? globalStatsLink.equals(steamGame.globalStatsLink) : steamGame.globalStatsLink == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = (int) (appId ^ (appId >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (logo != null ? logo.hashCode() : 0);
+        result = 31 * result + (storeLink != null ? storeLink.hashCode() : 0);
+        temp = Double.doubleToLongBits(hoursPlayedInTheLastFortnight);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(hoursPlayedInAllTime);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (statsLink != null ? statsLink.hashCode() : 0);
+        result = 31 * result + (globalStatsLink != null ? globalStatsLink.hashCode() : 0);
+        return result;
+    }
 }

@@ -1,5 +1,8 @@
 package es.rufflecol.sam.mushiki.presentation.allgames;
 
+import java.util.List;
+
+import es.rufflecol.sam.mushiki.data.steam.community.model.SteamGame;
 import es.rufflecol.sam.mushiki.presentation.common.BasePresenter;
 
 public interface AllGamesMvp {
@@ -12,6 +15,10 @@ public interface AllGamesMvp {
 
     interface View {
         void requestSteamId();
+
+        void displayGames(List<SteamGame> games);
+
+        void displayError();
     }
 
 }

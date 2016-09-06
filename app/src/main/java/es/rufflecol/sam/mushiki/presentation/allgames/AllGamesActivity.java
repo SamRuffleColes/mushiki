@@ -9,12 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.EditText;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.rufflecol.sam.mushiki.R;
 import es.rufflecol.sam.mushiki.application.App;
+import es.rufflecol.sam.mushiki.data.steam.community.model.SteamGame;
 
 public class AllGamesActivity extends AppCompatActivity implements AllGamesMvp.View {
 
@@ -50,6 +53,16 @@ public class AllGamesActivity extends AppCompatActivity implements AllGamesMvp.V
                     }
                 })
                 .show();
+    }
+
+    @Override
+    public void displayGames(List<SteamGame> games) {
+
+    }
+
+    @Override
+    public void displayError() {
+
     }
 
 }

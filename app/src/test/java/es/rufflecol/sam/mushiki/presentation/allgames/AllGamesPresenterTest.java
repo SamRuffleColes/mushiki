@@ -8,17 +8,15 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import es.rufflecol.sam.mushiki.data.interactor.Interactor;
 import es.rufflecol.sam.mushiki.data.steam.community.model.SteamGame;
+import es.rufflecol.sam.mushiki.data.steam.community.model.SteamGameBuilder;
 
-import static junit.framework.Assert.fail;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.verify;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AllGamesPresenterTest {
@@ -29,7 +27,7 @@ public class AllGamesPresenterTest {
     @Mock
     AllGamesMvp.View view;
 
-    AllGamesMvp.Presenter presenter;
+    AllGamesPresenter presenter;
 
     @Before
     public void setUp() {
@@ -40,41 +38,47 @@ public class AllGamesPresenterTest {
 
     @Test
     public void requestsSteamIdOnCreate() {
-        verify(view, times(1)).requestSteamId();
+        verify(view).requestSteamId();
     }
 
     @Test
-    public void showsErrorWhenFetchSteamGamesFailsForSteamId() {
+    public void displaysErrorWhenFetchSteamGamesFailsForSteamId() {
         doAnswer(new FetchSteamGamesInteractorListenerAnswer() {
             @Override
             protected void answer(Interactor.FetchSteamGames.Listener listener) {
                 listener.onFetchSteamGamesFailure();
             }
-        }).when(interactor).fetchForId(any(Long.class));
+        }).when(interactor).fetchForId(1234l, presenter);
 
-        fail("not finished");
+        presenter.fetchGamesForUser("1234");
+
+        verify(view).displayError();
     }
 
     @Test
-    public void showsGamesWhenFetchSteamGamesSucceedsForSteamUsername() {
+    public void displaysGamesWhenFetchSteamGamesSucceedsForSteamUsername() {
         doAnswer(new FetchSteamGamesInteractorListenerAnswer() {
             @Override
             protected void answer(Interactor.FetchSteamGames.Listener listener) {
-                listener.onFetchSteamGamesSuccess(mockGamesList());
+                listener.onFetchSteamGamesSuccess(testDataSteamGameList());
             }
-        }).when(interactor).fetchForUsername(any(String.class));
+        }).when(interactor).fetchForUsername("myUsername", presenter);
 
-        fail("not finished");
+        presenter.fetchGamesForUser("myUsername");
+
+        verify(view).displayGames(testDataSteamGameList());
     }
 
-    private static List<SteamGame> mockGamesList() {
-        return Collections.EMPTY_LIST;
+    private static List<SteamGame> testDataSteamGameList() {
+        return Arrays.asList(new SteamGameBuilder().name("Game One").logo("http://fake.url").build(),
+                new SteamGameBuilder().name("Game Two").logo("http://fake2.url").build(),
+                new SteamGameBuilder().name("Game Three").logo("http://fake3.url").build());
     }
 
     private abstract static class FetchSteamGamesInteractorListenerAnswer implements Answer<Void> {
         @Override
         public Void answer(InvocationOnMock invocation) throws Throwable {
-            Interactor.FetchSteamGames.Listener listener = (Interactor.FetchSteamGames.Listener) invocation.getArguments()[2];
+            Interactor.FetchSteamGames.Listener listener = (Interactor.FetchSteamGames.Listener) invocation.getArguments()[1];
             answer(listener);
             return null;
         }
