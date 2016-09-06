@@ -1,5 +1,9 @@
 package es.rufflecol.sam.mushiki.data.interactor;
 
+import java.util.List;
+
+import es.rufflecol.sam.mushiki.data.steam.community.model.SteamGame;
+
 public interface Interactor {
 
     interface FetchSteamGames {
@@ -8,7 +12,7 @@ public interface Interactor {
         void fetchForUsername(String username);
 
         interface Listener {
-            void onFetchSteamGamesSuccess();
+            void onFetchSteamGamesSuccess(List<SteamGame> games);
 
             void onFetchSteamGamesFailure();
         }

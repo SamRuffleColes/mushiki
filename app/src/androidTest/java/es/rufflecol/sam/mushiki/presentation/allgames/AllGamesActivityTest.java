@@ -96,7 +96,7 @@ public class AllGamesActivityTest {
     public void requestSteamIdDialogCallsFetchGamesForUserWithInputUsername() {
         onView(withId(R.id.editext)).perform(typeText("myUsername"), closeSoftKeyboard());
         onView(withText(R.string.ok)).perform(click());
-        verify(presenter, times(1)).fetchGamesForUser("myUsername");
+        verify(presenter).fetchGamesForUser("myUsername");
     }
 
 }

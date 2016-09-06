@@ -26,7 +26,12 @@ public class AllGamesPresenter implements AllGamesMvp.Presenter {
 
     @Override
     public void fetchGamesForUser(String idOrUsername) {
-
+        try {
+            long steamId64 = Long.parseLong(idOrUsername);
+            fetchSteamGamesInteractor.fetchForId(steamId64);
+        } catch (NumberFormatException e) {
+            fetchSteamGamesInteractor.fetchForUsername(idOrUsername);
+        }
     }
 
 }
